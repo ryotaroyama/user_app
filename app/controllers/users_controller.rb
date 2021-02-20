@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(post_params)
+    user = User.create!(user_params)
     redirect_to user
   end
 
@@ -23,6 +23,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    user = User.find(params[:id])
+    user.destroy!
+    redirect_to root_path
   end
 
   private
