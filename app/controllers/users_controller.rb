@@ -15,8 +15,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(user_params)
-    redirect_to user, notice: "投稿しました"
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to @user, notice: "投稿しました"
+    else
+      flash.now[:alert] = "投稿失敗しました"
+      render :new
+    end
   end
 
   def edit
@@ -24,8 +29,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update!(user_params)
-    redirect_to @user, notice: "更新しました"
+    if @user.update(user_params)
+      redirect_to @user, notice: "更新しました"
+    else
+      flash.now[:alert] = "更新に失敗しました"
+      render :edit
+    end
   end
 
   def destroy
