@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy!
-    redirect_to root_path, alert: ™削除しました"
+    redirect_to root_path, alert: "削除しました"
   end
 
   private
