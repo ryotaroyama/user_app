@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.create!(user_params)
-    redirect_to user
+    redirect_to user, notice: "投稿しました"
   end
 
   def edit
@@ -25,12 +25,12 @@ class UsersController < ApplicationController
 
   def update
     @user.update!(user_params)
-    redirect_to @user
+    redirect_to @user, notice: "更新しました"
   end
 
   def destroy
     @user.destroy!
-    redirect_to root_path
+    redirect_to root_path, alert: ™削除しました"
   end
 
   private
